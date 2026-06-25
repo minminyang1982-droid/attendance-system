@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>打卡差勤系統</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <h1>差勤系統</h1>
+      <nav>
+        <button class="nav-btn active" data-target="dashboard">總覽</button>
+        <button class="nav-btn" data-target="clock">打卡</button>
+        <button class="nav-btn" data-target="records">紀錄</button>
+        <button class="nav-btn" data-target="leave">請假</button>
+      </nav>
+      <div class="sidebar-card">
+        <p>今日日期</p>
+        <strong id="todayDate"></strong>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section id="dashboard" class="panel active">
+        <div class="header">
+          <div>
+            <h2>出勤總覽</h2>
+            <p>快速查看今天的打卡狀態</p>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card">
+            <span>今日打卡人數</span>
+            <strong id="statChecked">0</strong>
+          </div>
+          <div class="stat-card">
+            <span>遲到人數</span>
+            <strong id="statLate">0</strong>
+          </div>
+          <div class="stat-card">
+            <span>請假申請</span>
+            <strong id="statLeave">0</strong>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>最近打卡</h3>
+          <div id="recentList" class="list"></div>
+        </div>
+      </section>
+
+      <section id="clock" class="panel">
+        <div class="card">
+          <h2>員工打卡</h2>
+          <div class="form-grid">
+            <input id="empId" placeholder="員工編號" />
+            <input id="empName" placeholder="員工姓名" />
+            <select id="clockType">
+              <option value="上班">上班</option>
+              <option value="下班">下班</option>
+            </select>
+            <button id="clockBtn">送出打卡</button>
+          </div>
+          <p id="clockMsg" class="msg"></p>
+        </div>
+      </section>
+
+      <section id="records" class="panel">
+        <div class="card">
+          <div class="card-head">
+            <h2>打卡紀錄</h2>
+            <button id="exportBtn">匯出 CSV</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>時間</th>
+                  <th>員工編號</th>
+                  <th>姓名</th>
+                  <th>類型</th>
+                  <th>狀態</th>
+                </tr>
+              </thead>
+              <tbody id="recordTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="leave" class="panel">
+        <div class="card">
+          <h2>請假申請</h2>
+          <div class="form-grid leave-grid">
+            <input id="leaveEmpId" placeholder="員工編號" />
+            <input id="leaveEmpName" placeholder="員工姓名" />
+            <input id="leaveDate" type="date" />
+            <select id="leaveType">
+              <option>事假</option>
+              <option>病假</option>
+              <option>特休</option>
+              <option>其他</option>
+            </select>
+            <textarea id="leaveReason" placeholder="請假事由"></textarea>
+            <button id="leaveBtn">送出申請</button>
+          </div>
+          <p id="leaveMsg" class="msg"></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
